@@ -10,20 +10,15 @@ int main() {
 	cin >> n;
 	for (int i = 0; i < n; i++) {
 		cin >> s >> num >> yn;
-		if ((s == ">" && yn == "Y") || (s == "<=" && yn == "N")) {
-			if (num >= low) 
-				low = num + 1;
-		} else if ((s == "<" && yn == "Y") || (s == ">=" && yn == "N")) {
-			if (num <= high) 
-				high = num - 1;
-		} else if ((s == ">=" && yn == "Y") || (s == "<" && yn == "N")) {
-			if (num >= low)
-				low = num;
-		} else if ((s == "<=" && yn == "Y") || (s == ">" && yn == "N")) {
-			if (num <= high)
-				high = num;
-		}
-    if (low > high) {
+		if ((s == ">" && yn == "Y") || (s == "<=" && yn == "N"))
+			low = max(low, num + 1);
+		else if ((s == "<" && yn == "Y") || (s == ">=" && yn == "N"))
+			high = min(high, num - 1);
+		else if ((s == ">=" && yn == "Y") || (s == "<" && yn == "N"))
+			low = max(low, num);
+		else if ((s == "<=" && yn == "Y") || (s == ">" && yn == "N"))
+			high = min(high, num);
+		if (low > high) {
 			cout << "Impossible";
 			return 0;
 		}
